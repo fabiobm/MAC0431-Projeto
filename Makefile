@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -lm -Wall
+CFLAGS = -lm -Wall -O3
 
 paralelo: paralelo.c
 	$(CC) -fopenmp paralelo.c -o paralelo $(CFLAGS)
