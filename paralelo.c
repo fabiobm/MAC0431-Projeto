@@ -175,14 +175,15 @@ void escrevePPM(char nomeArquivo[], Imagem imagem)
 /* ordem R_x, R_y, B_x, B_y.                                            */
 void calculaComponentesRB(double pixel[], double componentes[])
 {
+
     /* Deixa as constantes pra fora */
     double constanteX = sin(2 * M_PI * pixel[1]);
     double constanteY = cos(2 * M_PI * pixel[1]);
 
-    componentes[0] =  pixel[0] * constanteX; // R_x =  |R| sin(2pi G)
-    componentes[1] =  pixel[0] * constanteY; // R_y =  |R| cos(2pi G)
-    componentes[2] = -pixel[2] * constanteX; // B_x = -|B| sin(2pi G)
-    componentes[3] = -pixel[2] * constanteY; // B_y = -|B| cos(2pi G)
+    componentes[0] =  pixel[0] * constanteX; /* R_x =  |R| sin(2pi G) */
+    componentes[1] =  pixel[0] * constanteY; /* R_y =  |R| cos(2pi G) */
+    componentes[2] = -pixel[2] * constanteX; /* B_x = -|B| sin(2pi G) */
+    componentes[3] = -pixel[2] * constanteY; /* B_y = -|B| cos(2pi G) */
 }
 
 
@@ -436,7 +437,6 @@ void atualizaImagem(Imagem *imagem)
     }
     /* Fim da regiao paralela */
 
-
     corrigeValoresAtualizaVerde(imagem);
 }
 
@@ -459,22 +459,39 @@ void atualiza(Imagem *imagem, int nVezes, char nomeArquivo[], int salvaSempre, i
             printf("Iteracao %d\n", i + 1);
     }
 
-    escrevePPM(nomeArquivo, *imagem);
+    if (!salvaSempre)
+        escrevePPM(nomeArquivo, *imagem);
 }
 
 
 int main(int argc, char *argv[])
 {
     Imagem imagem;
+    int num_iteracoes, num_threads;
 
-    if (argc < 4) {
-        printf("Faltam argumentos!!! Só tem %d\n", argc - 1);
+    if (argc < 5) {
+        printf("Faltam argumentos! Foram fornecidos apenas %d\n", argc - 1);
+        printf("Uso: %s <arq_entrada> <arq_saida> <num_iteracoes> <num_procs>\n", argv[0]);
         return 1;
     }
 
     lePPM(argv[1], &imagem);
 
-    atualiza(&imagem, atoi(argv[3]), argv[2], 0, 0);
+    num_iteracoes = atoi(argv[3]);
+    num_threads = atoi(argv[4]);
+
+    if (num_iteracoes <= 0) {
+        printf("Numero invalido de interacoes\n");
+        return 2;
+    }
+
+    if (num_threads <= 0) {
+        printf("Numero invalido de threads\n");
+        return 3;
+    }
+
+    omp_set_num_threads(num_threads);
+    atualiza(&imagem, num_iteracoes, argv[2], 0, 0);
 
     liberaMatriz(&imagem);
 
