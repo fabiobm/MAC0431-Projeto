@@ -1,16 +1,90 @@
 # MAC0431-Projeto
 Projeto de MAC0431 (Introdução à Computação Paralela e Distribuída)
 
-Para compilar a versão sequencial:
-`make sequencial`
+Para compilar:
 
-Para compilar a versão paralela:
-`make`
+```bash
+make
+```
 
-Para rodar a versão sequencial:
-`./sequencial <nome_arquivo_entrada> <nome_arquivo_saida> <numero_de_iteracoes>`
+Para executar:
 
-Para rodar a versão paralela:
-`./paralelo <nome_arq_entrada> <nome_arq_saida> <numero_iteracoes> <numero_threads>`
+```bash
+./paralelo <nome_arq_entrada> <nome_arq_saida> <numero_iteracoes> <numero_threads>
+```
 
-Onde o arquivo de entrada e o de saída são arquivos .ppm no formato P3 (Colorido ASCII).
+Onde o arquivo de entrada e o de saída são arquivos `.ppm` no formato **P3** (Colorido ASCII).
+
+
+## OpenMP
+
+Foi utilizado a configuração `static` do **OpenMP** que divide igualmente o número de iterações.
+
+Cada thread executa cada linha/thread.
+
+# Testes
+
+Computadores testados:
+
+* [Computadores da rede Linux](#pc1)
+* [Netbook HP](#pc2)
+
+<a name="pc1"></a>
+### Specs: Computadores da rede Linux
+
+* 8 processadores Intel(R) Xeon(R) CPU, 2.66GHz
+* Mem: 8004 MB
+
+<a name="pc2"></a>
+###Specs: Netbook HP
+
+* 2 processadores Intel(R) Atom(TM) CPU, 1.66GHz
+* Mem: 2035 MB
+
+
+## Arquivos de testes
+
+Número de iterações: 25
+
+### Imagem: zwei.ppm
+
+*Dimensão:* 500x500 pixels
+*Tamanho:* 2.5 MB
+
+**Computador: rede Linux**
+
+| time | 1 thread | 8 threads | 20 threads |
+|:-----|:---------|:----------|:-----------|
+| real | 0m6.113s | 0m1.830s  | 0m1.489s   |
+| user | 0m5.812s | 0m7.408s  | 0m6.096s   |
+| sys  | 0m0.020s | 0m0.020s  | 0m0.024s   |
+
+**Computador: Netbook HP**
+
+| time | 1 thread  | 8 threads | 20 threads |
+|:-----|:----------|:----------|:-----------|
+| real | 0m23.878s | 0m16.203s | 0m15.729s  |
+| user | 0m23.740s | 0m28.900s | 0m28.996s  |
+| sys  | 0m0.064s  | 0m0.120s  | 0m0.124s   |
+
+
+### Imagem: minecraft.ppm
+
+*Dimensão:* 1500x1500 pixels
+*Tamanho:* 21.4 MB
+
+**Computador: rede Linux**
+
+| time | 1 thread  | 8 threads | 20 threads |
+|:-----|:----------|:----------|:-----------|
+| real | 0m52.537s | 0m13.242s | 0m11.052s  |
+| user | 0m50.124s | 0m52.224s | 0m50.984s  |
+| sys  | 0m0.100s  | 0m0.132s  | 0m0.156s   |
+
+**Computador: Netbook HP**
+
+| time | 1 thread  | 8 threads | 20 threads |
+|:-----|:----------|:----------|:-----------|
+| real | 3m28.295s | 2m17.913s | 2m18.108s  |
+| user | 3m27.324s | 4m14.812s | 4m15.056s  |
+| sys  | 0m0.524s  | 0m0.584s  | 0m0.620s   |

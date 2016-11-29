@@ -1,3 +1,10 @@
+/*******************************************
+ * alunos:                  num.USP: 
+ * Fabio Muller             853 6127
+ * Leonardo Daneu Lopes     851 6816
+ * Lucas S. J. Hong         812 4329
+ *******************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -471,7 +478,7 @@ int main(int argc, char *argv[])
 
     if (argc < 5) {
         printf("Faltam argumentos! Foram fornecidos apenas %d\n", argc - 1);
-        printf("Uso: %s <arq_entrada> <arq_saida> <num_iteracoes> <num_procs>\n", argv[0]);
+        printf("Uso: %s <arq_entrada> <arq_saida> <num_iteracoes> <num_threads>\n", argv[0]);
         return 1;
     }
 
