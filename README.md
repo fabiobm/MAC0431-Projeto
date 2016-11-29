@@ -14,9 +14,10 @@ Onde o arquivo de entrada e o de saída são arquivos `.ppm` no formato **P3** (
 
 ## OpenMP
 
-Foi utilizado a configuração `static` do OpenMP que divide igualmente o número de iterações.
+Foi utilizada a configuração `static` do OpenMP sem especificar tamanho de pedaço, o que divide igualmente (se possível) o número de iterações pelas threads.
 
-Cada thread executa cada linha/thread.
+Assim, cada thread executa um bloco de linhas e não há problema com as dependências porque threads diferentes estarão executando linhas que não são seguidas, ou seja, uma não influencia o cálculo da atualização dos pixels da outra.
+
 
 # Testes
 
