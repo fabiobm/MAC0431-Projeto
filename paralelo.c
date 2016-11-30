@@ -110,6 +110,7 @@ void lePPM(char nomeArquivo[], Imagem *imagem)
     int i, j;
     int r, g, b;
 
+    char c;
     char magicNumber[3];
     magicNumber[2] = '\0';
 
@@ -119,14 +120,18 @@ void lePPM(char nomeArquivo[], Imagem *imagem)
         exit(EXIT_FAILURE);
     }
 
-    fscanf(fp, "%c %c", &magicNumber[0], &magicNumber[1]);
+    fscanf(fp, "%c %c\n", &magicNumber[0], &magicNumber[1]);
     if (strcmp(magicNumber, "P3") != 0) {
         printf("Numero magico errado!\nEsperado: P3\n Encontrado: %s\n", magicNumber);
         exit(EXIT_FAILURE);
     }
 
+    fscanf(fp, "%c", &c);
+    if (c == '#')
+	while (c != '\n') fscanf(fp, "%c", &c);
+    else fseek(fp, -1, SEEK_CUR);
+    
     fscanf(fp, "%d %d %d", &(imagem->altura), &(imagem->largura), &(imagem->maxVal));
-
     alocaMatriz(imagem);
 
     for (i = 0; i < imagem->altura; i++) {
