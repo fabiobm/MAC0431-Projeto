@@ -2,6 +2,7 @@
 Projeto de MAC0431 (Introdução à Computação Paralela e Distribuída)
 
 Alunos:
+
 Fabio B. Muller - NUSP: 8536127
 
 Leonardo Daneu Lopes - NUSP: 8516816
