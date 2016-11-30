@@ -1,6 +1,11 @@
 # MAC0431-Projeto
 Projeto de MAC0431 (Introdução à Computação Paralela e Distribuída)
 
+Alunos:
+Fabio B. Muller - NUSP: 8536127
+Leonardo Daneu Lopes - NUSP: 8516816
+Lucas S. J. Hong - NUSP: 8124329
+
 Para compilar:
 
     make
@@ -32,6 +37,8 @@ Computadores testados:
 
 
 ## Arquivos de testes
+
+Observação: As imagens usadas nos testes estão disponíveis no repositório do GitHub do projeto: https://github.com/fabiobm/MAC0431-Projeto
 
 Número de iterações: 25
 
