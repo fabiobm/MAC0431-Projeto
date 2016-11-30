@@ -1,6 +1,6 @@
 /*******************************************
  * alunos:                  num.USP: 
- * Fabio Muller             853 6127
+ * Fabio B. Muller             853 6127
  * Leonardo Daneu Lopes     851 6816
  * Lucas S. J. Hong         812 4329
  *******************************************/
